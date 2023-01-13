@@ -2,8 +2,10 @@ import 'package:article_finder/bloc/articles_list_bloc.dart';
 import 'package:article_finder/ui/article_list_item.dart';
 import 'package:flutter/material.dart';
 
+import '../bloc/article_detail_bloc.dart';
 import '../bloc/bloc_provider.dart';
 import '../data/article.dart';
+import 'article_detail_screen.dart';
 
 class ArticleListScreen extends StatelessWidget {
   const ArticleListScreen({Key? key}) : super(key: key);
@@ -67,7 +69,15 @@ class ArticleListScreen extends StatelessWidget {
           ),
           // 2
           onTap: () {
-            // TODO: Later will be implemented
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                  bloc: ArticleDetailBloc(id: article.id),
+                  child: const ArticleDetailScreen(),
+                ),
+              ),
+            );
           },
         );
       },
